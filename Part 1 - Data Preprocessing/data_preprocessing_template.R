@@ -16,6 +16,20 @@ dataset$Salary = ifelse(
   dataset$Salary
 )
 
+# encoding categorical data
+dataset$Country = factor(
+  dataset$Country, 
+  levels = c('France', 'Spain', 'Germany'),
+  labels = c(1, 2, 3)
+)
+
+# encoding categorical data
+dataset$Purchased = factor(
+  dataset$Purchased, 
+  levels = c('No', 'Yes'),
+  labels = c(0, 1)
+)
+
 
 
 # Splitting the dataset into the Training set and Test set
