@@ -6,9 +6,10 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Importing the dataset
-dataset = pd.read_csv('Position_Salaries.csv')
-X = dataset.iloc[:, 1:2].values
-y = dataset.iloc[:, 2].values
+dataset = pd.read_csv('Position_Salaries.csv').as_matrix()
+X = dataset[:, 1:-1]
+y = dataset[:, -1]
+
 
 # Splitting the dataset into the Training set and Test set
 """from sklearn.model_selection import train_test_split
