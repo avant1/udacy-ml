@@ -40,7 +40,6 @@ for degree in range(2, 5):
         # color='black',
         label='Predicted data (polynomial model, degree {})'.format(degree)
     )
-    print('danynah')
 
 plt.legend(loc='upper left')
 plt.show()
