@@ -1,31 +1,30 @@
-# Logistic Regression
-
-# Importing the libraries
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# Importing the dataset
-dataset = pd.read_csv('Social_Network_Ads.csv').as_matrix()
-X = dataset[:, [2, 3]]
-y = dataset[:, 4]
+dataset = pd.read_csv('Social_Network_Ads.csv')
+# ignoring user ID and gender columns
+X = dataset.iloc[:, 2:-1].values
+y = dataset.iloc[:, 4].values
 
 # Splitting the dataset into the Training set and Test set
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
 
 # Feature Scaling
 from sklearn.preprocessing import StandardScaler
-sc = StandardScaler()
-X_train = sc.fit_transform(X_train)
-X_test = sc.transform(X_test)
+sc_X = StandardScaler()
+X_train = sc_X.fit_transform(X_train)
+X_test = sc_X.transform(X_test)
 
-# Fitting Logistic Regression to the Training set
+# Fitting the Regression Model to the dataset
 from sklearn.linear_model import LogisticRegression
-classifier = LogisticRegression(random_state = 0)
+classifier = LogisticRegression(C=1, random_state=0)
 classifier.fit(X_train, y_train)
 
-# Predicting the Test set results
+score = classifier.score(X_test, y_test)
+print('Score: {:.2f}'.format(score))
+
 y_pred = classifier.predict(X_test)
 
 # Making the Confusion Matrix
