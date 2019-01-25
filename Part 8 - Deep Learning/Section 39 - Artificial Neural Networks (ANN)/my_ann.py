@@ -47,8 +47,6 @@ classifier.fit(X_train, y_train, batch_size=10, epochs=5)
 
 y_pred_probabilities = classifier.predict(X_test, verbose=1)
 
-print(y_pred_probabilities)
-
 threshold = 0.5
 y_pred: np.ndarray = (y_pred_probabilities > threshold)
 y_pred = y_pred.astype(int)

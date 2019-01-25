@@ -1,11 +1,10 @@
 FROM python:3.6.8-stretch
 
-RUN pip install numpy \
-            plotly matplotlib \
-            scipy scikit-learn \
-            nltk \
-            pandas numexpr bottleneck \
-            git+https://github.com/Theano/Theano.git#egg=Theano \
-            keras tensorflow
+COPY requirements.txt requirements.txt
+
+#looks like installing from sources cannot be repeated using requirements file
+RUN pip install git+https://github.com/Theano/Theano.git#rel-1.0.4
+
+RUN pip install -r requirements.txt
 
 WORKDIR /opt/app
