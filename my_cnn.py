@@ -10,15 +10,17 @@
 #%%
 
 import os
+import numpy as np
 
 from keras.models import Sequential
 
-from keras.layers import Conv2D
+from keras.layers import Conv2D, Dropout
 from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
 from keras.preprocessing.image import ImageDataGenerator
 
+np.random.seed(0)
 
 #%%
 
@@ -28,14 +30,15 @@ image_dimentions = 64
 
 model.add(Conv2D(filters=32, kernel_size=3, padding='same', input_shape=(image_dimentions, image_dimentions, 3), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2), strides=2))
+
+model.add(Conv2D(filters=64, kernel_size=3, padding='same', activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2), strides=2))
+
 model.add(Flatten())
 
-
-#%%
-
 model.add(Dense(units=128, activation='relu'))
-
 model.add(Dense(units=1, activation='sigmoid'))
+
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
 #%%
