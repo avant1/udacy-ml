@@ -42,4 +42,4 @@ Theano==1.0.4+4.gc72eafaff
 traitlets==4.3.2
 urllib3==1.24.1
 Werkzeug==0.14.1
-pillow==5.4.1
+pillow==8.2.0
